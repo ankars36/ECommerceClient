@@ -17,3 +17,5 @@ export class AppComponent {
     });
   }
 }
+
+$.get("https://localhost:7001/api/products")
