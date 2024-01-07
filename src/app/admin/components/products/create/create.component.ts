@@ -31,6 +31,13 @@ export class CreateComponent extends BaseComponent implements OnInit {
         messageType: MessageType.Success,
         position: Position.TopRight
       })
+    }, errorMessage => {
+      this.hideSpinner(SpinnerType.BallAtom);
+      this.alertify.message(errorMessage, {
+        dismissOthers: true,
+        messageType: MessageType.Error,
+        position: Position.TopRight
+      })
     });
   }
 }
