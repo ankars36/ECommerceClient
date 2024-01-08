@@ -18,7 +18,7 @@ export class ListComponent extends BaseComponent implements OnInit {
     super(spinner)
   }
 
-  displayedColumns: string[] = ['name', 'stock', 'price', 'createdDate', 'updatedDate'];
+  displayedColumns: string[] = ['name', 'stock', 'price', 'createdDate', 'updatedDate', 'edit', 'delete'];
   dataSource: MatTableDataSource<any> = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -39,8 +39,8 @@ export class ListComponent extends BaseComponent implements OnInit {
     await this.getProducts();
   }
 
-  async pageChanged(){
-    await this.getProducts(); 
+  async pageChanged() {
+    await this.getProducts();
   }
 
 }
