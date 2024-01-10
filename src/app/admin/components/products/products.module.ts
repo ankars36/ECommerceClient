@@ -7,21 +7,18 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { CreateComponent } from './create/create.component';
 import { ListComponent } from './list/list.component';
 import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { DeleteDirective } from '../../../directives/admin/delete.directive';
-import { MatDialogModule } from '@angular/material/dialog';
-import { DeleteDialogComponent } from '../../../dialogs/delete-dialog/delete-dialog.component'; 
 import { FileUploadModule } from '../../../services/common/file-upload/file-upload.module';
+import { DialogModule } from '@angular/cdk/dialog';
 
 @NgModule({
   declarations: [
     ProductsComponent,
     CreateComponent,
     ListComponent,
-    DeleteDirective,
-    DeleteDialogComponent
+    DeleteDirective
   ],
   imports: [
     CommonModule,
@@ -31,10 +28,9 @@ import { FileUploadModule } from '../../../services/common/file-upload/file-uplo
     MatSidenavModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule,
     MatTableModule,
     MatPaginatorModule,
-    MatDialogModule,
+    DialogModule,
     FileUploadModule
   ]
 })
