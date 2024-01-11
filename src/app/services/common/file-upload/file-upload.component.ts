@@ -7,6 +7,8 @@ import { ToastrCustomService, ToastrMessageType, ToastrPosition } from '../../ui
 import { MatDialog } from '@angular/material/dialog';
 import { FileUploadDialogComponent, FileUploadState } from '../../../dialogs/file-upload-dialog/file-upload-dialog/file-upload-dialog.component';
 import { DialogService } from '../dialog.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { SpinnerType } from '../../../base/base.component';
 
 @Component({
   selector: 'app-file-upload',
@@ -15,7 +17,7 @@ import { DialogService } from '../dialog.service';
 })
 
 export class FileUploadComponent {
-  constructor(private httpClientService: HttpClientService, private alertifyService: AlertifyService, private toastrCustomService: ToastrCustomService, private dialog: MatDialog, private dialogService: DialogService) { }
+  constructor(private httpClientService: HttpClientService, private alertifyService: AlertifyService, private toastrCustomService: ToastrCustomService, private dialog: MatDialog, private dialogService: DialogService, private spinnerService: NgxSpinnerService) { }
 
   public files: NgxFileDropEntry[];
 
@@ -34,12 +36,14 @@ export class FileUploadComponent {
       componentType: FileUploadDialogComponent,
       data: FileUploadState.Yes,
       afterClosed: () => {
+        this.spinnerService.show(SpinnerType.BallAtom);
         this.httpClientService.post({
           controller: this.options.controller,
           action: this.options.action,
           queryParameters: this.options.queryString,
           headers: new HttpHeaders({ "responseType": "blob" })
         }, fileData).subscribe(data => {
+          this.spinnerService.hide(SpinnerType.BallAtom);
           const message: string = "Files uploaded succesfully.";
           if (this.options.isAdminPage) {
             this.alertifyService.message(message, {
@@ -55,6 +59,7 @@ export class FileUploadComponent {
             });
           }
         }, (errorResponse: HttpErrorResponse) => {
+          this.spinnerService.hide(SpinnerType.BallAtom);
           const message: string = errorResponse.message;
           if (this.options.isAdminPage) {
             this.alertifyService.message(message, {
