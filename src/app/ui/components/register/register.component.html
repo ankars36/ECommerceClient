@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <form [formGroup]="frm" (ngSubmit)="onSubmit(frm.value)">
+            <div class="mb-3"> 
+                <label for="nameSurname" class="form-label">Name Surname</label>
+                <input type="text" formControlName="nameSurname" class="form-control" id="nameSurname" [ngClass]="{'is-invalid': components.nameSurname.errors}">
+                <div class="form-text invalid-feedback" *ngIf="components.nameSurname.errors?.required">Please Fill Name Surname Field.</div>
+                <div class="form-text invalid-feedback" *ngIf="components.nameSurname.errors?.minlength || components.nameSurname.errors?.maxlength">Name Surname Field Should Be Between 3 And 50 Character Length.</div>
+            </div>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" formControlName="username" class="form-control" id="username" [ngClass]="{'is-invalid': components.username.errors}">
+                <div class="form-text invalid-feedback" *ngIf="components.username.errors?.required">Please Fill Username Field.</div>
+                <div class="form-text invalid-feedback" *ngIf="components.username.errors?.minlength || components.username.errors?.maxlength">Name Surname Field Should Be Between 3 And 50 Character Length.</div>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" formControlName="email" class="form-control" id="email" [ngClass]="{'is-invalid': components.email.errors}">
+                <div class="form-text invalid-feedback" *ngIf="components.email.errors?.required">Please Fill Email Field.</div>
+                <div class="form-text invalid-feedback" *ngIf="components.email.errors?.email">Please Put Correct Email.</div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" formControlName="password" class="form-control" id="password" [ngClass]="{'is-invalid': components.password.errors}">
+                <div class="form-text invalid-feedback" *ngIf="components.password.errors?.required">Please Fill Password Field.</div>
+            </div>
+            <div class="mb-3">
+                <label for="passwordConfirm" class="form-label">Password Confirm</label>
+                <input type="password" formControlName="passwordConfirm" class="form-control" id="passwordConfirm" [ngClass]="{'is-invalid': components.passwordConfirm.errors}">
+                <div class="form-text invalid-feedback" *ngIf="components.passwordConfirm.errors?.required">Please Fill Password Confirm Field.</div>
+                <div class="form-text"  *ngIf="frm.hasError('notSame')">Please Make Same Passwords.</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>
