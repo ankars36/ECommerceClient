@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { User } from '../../../entities/user';
+import { UserService } from '../../../services/common/models/user.service';
+import { Create_User } from '../../../contracts/users/create_user';
+import { ToastrCustomService, ToastrMessageType, ToastrPosition } from '../../../services/ui/toastr-custom.service';
 
 @Component({
   selector: 'app-register',
@@ -8,7 +11,7 @@ import { User } from '../../../entities/user';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private toastrService: ToastrCustomService) { }
 
   frm: FormGroup;
   ngOnInit(): void {
@@ -31,9 +34,21 @@ export class RegisterComponent implements OnInit {
     return this.frm.controls;
   };
 
-  onSubmit(data: User) {
+  async onSubmit(user: User) {
     if (this.frm.invalid)
       return;
+
+    const result: Create_User = await this.userService.create(user);
+    if (result.succeeded)
+      this.toastrService.message(result.message, "Success", {
+        messageType: ToastrMessageType.Success,
+        position: ToastrPosition.TopRight
+      })
+    else
+      this.toastrService.message(result.message, "Error", {
+        messageType: ToastrMessageType.Error,
+        position: ToastrPosition.TopRight
+      })
   }
 
 }
