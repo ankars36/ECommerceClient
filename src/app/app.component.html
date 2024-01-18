@@ -21,15 +21,22 @@
                             <a class="nav-link active" aria-current="page" routerLink="baskets">Baskets</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" routerLink="register">Register</a>
+                            <a class="nav-link active" aria-current="page" routerLink="register"
+                                *ngIf="!authService.isAuthenticated">Register</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" routerLink="login">Login</a>
+                            <a class="nav-link active" aria-current="page" routerLink="login"
+                                *ngIf="!authService.isAuthenticated">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="btn btn-outline-success" type="submit" routerLink="admin">Admin</a>
+                            <a class="nav-link active" aria-current="page" routerLink="logout" style="color: red;" (click)="signOut()"
+                                *ngIf="authService.isAuthenticated">Logout</a>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item">
+                            <a class="btn btn-outline-success" type="submit" routerLink="admin"
+                                *ngIf="authService.isAuthenticated">Admin</a>
+                        </li>
+                        <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Dropdown
@@ -45,12 +52,12 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                        </li>
+                        </li> -->
                     </ul>
-                    <form class="d-flex" role="search">
+                    <!-- <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                    </form> -->
                 </div>
             </div>
         </nav>
@@ -63,7 +70,7 @@
     <div class="col-md-8"><router-outlet></router-outlet></div>
     <div class="col-md-2"></div>
 </div>
- 
+
 <ngx-spinner type="ball-atom" name="s1"></ngx-spinner>
 <ngx-spinner type="ball-scale-multiple" name="s2"></ngx-spinner>
 <ngx-spinner type="ball-spin-clockwise-fade-rotating" name="s3"></ngx-spinner>
