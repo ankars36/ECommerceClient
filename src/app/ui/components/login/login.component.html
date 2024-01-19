@@ -15,6 +15,14 @@
             (click)="login(txtUsernameOrEmail.value,txtPassword.value)">Login</button>
         <br><br>
         <asl-google-signin-button></asl-google-signin-button>
+        <br>
+        <img src="../../../assets/facebook.png" style="width: 30px; height: 30px; cursor:pointer;" (click)="facebookLogin()" />
+        <!-- <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous"
+            src="https://connect.facebook.net/tr_TR/sdk.js#xfbml=1&version=v18.0&appId=3843883579231890"
+            nonce="OmCRI4p2"></script>
+        <div class="fb-login-button" data-width="30" data-size="" data-button-type="" data-layout=""
+            data-auto-logout-link="false" data-use-continue-as="false"></div> -->
     </div>
     <div class="col-md-3"></div>
 </div>

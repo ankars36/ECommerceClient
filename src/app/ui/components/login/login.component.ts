@@ -4,7 +4,7 @@ import { BaseComponent, SpinnerType } from '../../../base/base.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from '../../../services/common/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import { FacebookLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -17,17 +17,36 @@ export class LoginComponent extends BaseComponent implements OnInit {
     super(spinner);
     this.socialAuthService.authState.subscribe(async (user: SocialUser) => {
       this.showSpinner(SpinnerType.BallAtom);
-      await this.userService.googleLogin(user, () => {
-        this.authService.identityCheck();
-        this.activatedRoot.queryParams.subscribe(params => {
-          const returnUrl: string = params["returnUrl"];
-          if (returnUrl)
-            this.router.navigate([returnUrl]);
-          else
-            this.router.navigate(["admin"]);
-        });
-        this.hideSpinner(SpinnerType.BallAtom);
-      });
+      switch (user.provider) {
+        case "GOOGLE":
+          await this.userService.googleLogin(user, () => {
+            this.authService.identityCheck();
+            this.hideSpinner(SpinnerType.BallAtom);
+
+            this.activatedRoot.queryParams.subscribe(params => {
+              const returnUrl: string = params["returnUrl"];
+              if (returnUrl)
+                this.router.navigate([returnUrl]);
+              else
+                this.router.navigate(["admin"]);
+            });
+          });
+          break;
+        case "FACEBOOK":
+          await this.userService.facebookLogin(user, () => {
+            this.authService.identityCheck();
+            this.hideSpinner(SpinnerType.BallAtom);
+
+            this.activatedRoot.queryParams.subscribe(params => {
+              const returnUrl: string = params["returnUrl"];
+              if (returnUrl)
+                this.router.navigate([returnUrl]);
+              else
+                this.router.navigate(["admin"]);
+            });
+          });
+          break;
+      }
     });
   }
 
@@ -48,6 +67,10 @@ export class LoginComponent extends BaseComponent implements OnInit {
       });
       this.hideSpinner(SpinnerType.BallAtom);
     });
+  }
+
+  facebookLogin(){
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 
 }
