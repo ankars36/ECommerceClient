@@ -34,7 +34,7 @@ import { HttpErrorHandlerInterceptorService } from './services/common/http-error
       }
     }),
     SocialLoginModule,
-    GoogleSigninButtonModule
+    GoogleSigninButtonModule,
   ],
   providers: [
     { provide: "BaseUrl", useValue: "https://localhost:7001/api", multi: true },
@@ -49,7 +49,7 @@ import { HttpErrorHandlerInterceptorService } from './services/common/http-error
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider("3488595401452544")
+            provider: new FacebookLoginProvider("3488595401452544")
           }
         ],
         onError: err => console.log(err)

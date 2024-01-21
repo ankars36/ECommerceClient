@@ -24,13 +24,13 @@ export class LoginComponent extends BaseComponent implements OnInit {
             this.authService.identityCheck();
             this.hideSpinner(SpinnerType.BallAtom);
 
-            this.activatedRoot.queryParams.subscribe(params => {
-              const returnUrl: string = params["returnUrl"];
-              if (returnUrl)
-                this.router.navigate([returnUrl]);
-              else
-                this.router.navigate(["admin"]);
-            });
+            // this.activatedRoot.queryParams.subscribe(params => {
+            //   const returnUrl: string = params["returnUrl"];
+            //   if (returnUrl)
+            //     this.router.navigate([returnUrl]);
+            //   else
+            //     this.router.navigate(["admin"]);
+            // });
           });
           break;
         case "FACEBOOK":
@@ -38,13 +38,13 @@ export class LoginComponent extends BaseComponent implements OnInit {
             this.authService.identityCheck();
             this.hideSpinner(SpinnerType.BallAtom);
 
-            this.activatedRoot.queryParams.subscribe(params => {
-              const returnUrl: string = params["returnUrl"];
-              if (returnUrl)
-                this.router.navigate([returnUrl]);
-              else
-                this.router.navigate(["admin"]);
-            });
+            // this.activatedRoot.queryParams.subscribe(params => {
+            //   const returnUrl: string = params["returnUrl"];
+            //   if (returnUrl)
+            //     this.router.navigate([returnUrl]);
+            //   else
+            //     this.router.navigate(["admin"]);
+            // });
           });
           break;
       }
