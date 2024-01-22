@@ -20,11 +20,25 @@ export class UserAuthService {
     const tokenResponse = await firstValueFrom(observable) as Token_Response;
     if (tokenResponse) {
       localStorage.setItem("accessToken", tokenResponse.token.accessToken);
+      localStorage.setItem("refreshToken", tokenResponse.token.refreshToken);
 
       this.toasterService.message("User Login Success", "Success", {
         messageType: ToastrMessageType.Success,
         position: ToastrPosition.TopRight
       });
+    }
+    callBackFunction();
+  }
+
+  async refreshTokenLogin(refreshtoken: string, callBackFunction?: () => void): Promise<void> {
+    const observable: Observable<any | Token_Response> = this.httpClientService.post<any | Token_Response>({
+      controller: "auth",
+      action: "RefreshTokenLogin"
+    }, { refreshtoken });
+    const tokenResponse = await firstValueFrom(observable) as Token_Response;
+    if (tokenResponse) {
+      localStorage.setItem("accessToken", tokenResponse.token.accessToken);
+      localStorage.setItem("refreshToken", tokenResponse.token.refreshToken);
     }
     callBackFunction();
   }
@@ -37,6 +51,7 @@ export class UserAuthService {
     const tokenResponse = await firstValueFrom(observable) as Token_Response;
     if (tokenResponse) {
       localStorage.setItem("accessToken", tokenResponse.token.accessToken);
+      localStorage.setItem("refreshToken", tokenResponse.token.refreshToken);
 
       this.toasterService.message("Google Login Success", "Success", {
         messageType: ToastrMessageType.Success,
@@ -54,6 +69,7 @@ export class UserAuthService {
     const tokenResponse = await firstValueFrom(observable) as Token_Response;
     if (tokenResponse) {
       localStorage.setItem("accessToken", tokenResponse.token.accessToken);
+      localStorage.setItem("refreshToken", tokenResponse.token.refreshToken);
 
       this.toasterService.message("Facebook Login Success", "Success", {
         messageType: ToastrMessageType.Success,
