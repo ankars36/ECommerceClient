@@ -38,6 +38,7 @@ import { HttpErrorHandlerInterceptorService } from './services/common/http-error
   ],
   providers: [
     { provide: "BaseUrl", useValue: "https://localhost:7001/api", multi: true },
+    { provide: "BaseSignalRUrl", useValue: "https://localhost:7001/", multi: true },
     {
       provide: "SocialAuthServiceConfig",
       useValue: {
