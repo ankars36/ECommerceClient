@@ -12,11 +12,15 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { BasketItemRemoveDialogComponent } from './basket-item-remove-dialog/basket-item-remove-dialog.component';
+import { ShoppingCompleteDialogComponent } from './shopping-complete-dialog/shopping-complete-dialog.component';
 
 @NgModule({
   declarations: [
     DeleteDialogComponent,
-    SelectProductImageDialogComponent
+    SelectProductImageDialogComponent,
+    BasketItemRemoveDialogComponent,
+    ShoppingCompleteDialogComponent
   ],
   imports: [
     CommonModule,
