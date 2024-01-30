@@ -7,6 +7,7 @@ import { List_Order } from '../../../../contracts/order/list_order';
 import { AlertifyService, MessageType, Position } from '../../../../services/admin/alertify.service';
 import { DialogService } from '../../../../services/common/dialog.service';
 import { OrderService } from '../../../../services/common/models/order.service';
+import { OrderDetailDialogComponent } from '../../../../dialogs/order-detail-dialog/order-detail-dialog.component';
 
 @Component({
   selector: 'app-list',
@@ -23,7 +24,7 @@ export class ListComponent extends BaseComponent implements OnInit {
   }
 
 
-  displayedColumns: string[] = ['orderCode', 'userName', 'totalPrice', 'createdDate', 'delete'];
+  displayedColumns: string[] = ['orderCode', 'userName', 'totalPrice', 'createdDate','viewdetail', 'delete'];
   dataSource: MatTableDataSource<List_Order> = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -49,4 +50,13 @@ export class ListComponent extends BaseComponent implements OnInit {
     await this.getOrders();
   }
 
+  showDetail(id: string) {
+    this.dialogService.openDialog({
+      componentType: OrderDetailDialogComponent,
+      data: id,
+      options: {
+        width: "750px"
+      }
+    });
+  }
 }
