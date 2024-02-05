@@ -4,8 +4,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { OrderService } from '../../services/common/models/order.service';
 import { DialogService } from '../../services/common/dialog.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ToastrCustomService } from '../../services/ui/toastr-custom.service';
+import { ToastrCustomService, ToastrMessageType, ToastrPosition } from '../../services/ui/toastr-custom.service';
 import { SingleOrder } from '../../contracts/order/single_order';
+import { CompleteOrderDialogComponent, CompleteOrderState } from '../complete-order-dialog/complete-order-dialog.component';
+import { SpinnerType } from '../../base/base.component';
 
 @Component({
   selector: 'app-order-detail-dialog',
@@ -37,6 +39,22 @@ export class OrderDetailDialogComponent extends BaseDialog<OrderDetailDialogComp
     this.dataSource = this.singleOrder.basketItems;
 
     this.totalPrice = this.singleOrder.basketItems.map((basketItem, index) => basketItem.price * basketItem.quantity).reduce((price, current) => price + current);
+  }
+
+  completeOrder() {
+    this.dialogService.openDialog({
+      componentType: CompleteOrderDialogComponent,
+      data: CompleteOrderState.Yes,
+      afterClosed: async () => {
+        this.spinner.show(SpinnerType.BallAtom)
+        await this.orderService.completeOrder(this.data as string);
+        this.spinner.hide(SpinnerType.BallAtom)
+        this.toastrService.message("The order has been successfully completed! The customer has been informed.", "Order Completed!", {
+          messageType: ToastrMessageType.Success,
+          position: ToastrPosition.TopRight
+        });
+      }
+    });
   }
 
 }
