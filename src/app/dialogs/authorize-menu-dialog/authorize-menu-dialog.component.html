@@ -1,0 +1,12 @@
+<h1 mat-dialog-title matBadge="3" matBadgeOverlap="false">{{data.name}} Endpoint Role Assign</h1>
+<div mat-dialog-content>
+  <p>You can assign roles to the relevant page from below.</p>
+</div>
+
+{{data.code}}
+
+<div></div>
+<div mat-dialog-actions>
+  <button mat-button (click)="close()">İptal</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Assign Roles</button>
+</div>

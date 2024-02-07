@@ -4,17 +4,20 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { ProductsModule } from './products/products.module';
 import { CustomersModule } from './customers/customers.module';
 import { OrdersModule } from './orders/orders.module';
-
-
+import { AuthorizeMenuComponent } from './authorize-menu/authorize-menu.component';
+import { AuthorizeMenuModule } from './authorize-menu/authorize-menu.module';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    
+  ],
   imports: [
     CommonModule,
     DashboardModule,
     ProductsModule,
     CustomersModule,
-    OrdersModule
+    OrdersModule,
+    AuthorizeMenuModule,
   ]
 })
 export class ComponentsModule { }
