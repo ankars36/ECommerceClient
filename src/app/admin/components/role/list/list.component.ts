@@ -5,7 +5,7 @@ import { RoleService } from '../../../../services/common/models/role.service';
 import { AlertifyService, MessageType, Position } from '../../../../services/admin/alertify.service';
 import { DialogService } from '../../../../services/common/dialog.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { List_Role } from '../../../../contracts/role/list_role';
+import { List_Role } from '../../../../contracts/role/List_Role';
 import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
