@@ -17,6 +17,7 @@ import { ShoppingCompleteDialogComponent } from './shopping-complete-dialog/shop
 import { OrderDetailDialogComponent } from './order-detail-dialog/order-detail-dialog.component';
 import { CompleteOrderDialogComponent } from './complete-order-dialog/complete-order-dialog.component';
 import { AuthorizeMenuDialogComponent } from './authorize-menu-dialog/authorize-menu-dialog.component';
+import { AuthorizeUserDialogComponent } from './authorize-user-dialog/authorize-user-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AuthorizeMenuDialogComponent } from './authorize-menu-dialog/authorize-
     ShoppingCompleteDialogComponent,
     OrderDetailDialogComponent,
     CompleteOrderDialogComponent,
-    AuthorizeMenuDialogComponent
+    AuthorizeMenuDialogComponent,
+    AuthorizeUserDialogComponent
   ],
   imports: [
     CommonModule,

@@ -7,6 +7,7 @@ import { OrdersModule } from './orders/orders.module';
 import { AuthorizeMenuComponent } from './authorize-menu/authorize-menu.component';
 import { AuthorizeMenuModule } from './authorize-menu/authorize-menu.module';
 import { RoleModule } from './role/role.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { RoleModule } from './role/role.module';
     CustomersModule,
     OrdersModule,
     AuthorizeMenuModule,
-    RoleModule
+    RoleModule,
+    UserModule
   ]
 })
 export class ComponentsModule { }
