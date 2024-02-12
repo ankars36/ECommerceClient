@@ -19,6 +19,10 @@ import { CompleteOrderDialogComponent } from './complete-order-dialog/complete-o
 import { AuthorizeMenuDialogComponent } from './authorize-menu-dialog/authorize-menu-dialog.component';
 import { AuthorizeUserDialogComponent } from './authorize-user-dialog/authorize-user-dialog.component';
 import { QrcodeDialogComponent } from './qrcode-dialog/qrcode-dialog.component';
+import { QrcodeReadingDialogComponent } from './qrcode-reading-dialog/qrcode-reading-dialog.component';
+import { LOAD_WASM, NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
+
+LOAD_WASM().subscribe();
 
 @NgModule({
   declarations: [
@@ -30,12 +34,14 @@ import { QrcodeDialogComponent } from './qrcode-dialog/qrcode-dialog.component';
     CompleteOrderDialogComponent,
     AuthorizeMenuDialogComponent,
     AuthorizeUserDialogComponent,
-    QrcodeDialogComponent
+    QrcodeDialogComponent,
+    QrcodeReadingDialogComponent
   ],
   imports: [
     CommonModule,
     MatDialogModule, MatButtonModule, MatCardModule, MatTableModule, MatToolbarModule, MatBadgeModule, MatListModule, MatFormFieldModule, MatInputModule,
-    FileUploadModule
+    FileUploadModule,
+    NgxScannerQrcodeModule
   ]
 })
 export class DialogModule { }
